@@ -15,11 +15,15 @@ import java.util.Optional;
 @Service
 public class BookmarkService {
 
-   @Autowired
-   private BookmarkRepository bookmarkRepository;
+    private BookmarkRepository bookmarkRepository;
+
+    private FolderRepository folderRepository;
 
    @Autowired
-   private FolderRepository folderRepository;
+    public BookmarkService(BookmarkRepository bookmarkRepository, FolderRepository folderRepository) {
+        this.bookmarkRepository = bookmarkRepository;
+        this.folderRepository = folderRepository;
+    }
 
     public List<Bookmark> getBookmarks() {
         return bookmarkRepository.findAll();

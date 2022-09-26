@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface BookmarkRepository extends JpaRepository<Bookmark, Long> {
     @Query("SELECT b FROM Folder s JOIN s.bookmarks b where s.id = ?1")
-   List<Bookmark> findBookmarksByFolder(Long folderId);
+    List<Bookmark> findBookmarksByFolder(Long folderId);
 
     @Query("SELECT s FROM Bookmark s WHERE s.url = ?1")
     Optional<Bookmark> findBookmarkByUrl(String url);

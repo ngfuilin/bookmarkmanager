@@ -17,7 +17,6 @@ public class BookmarkController {
 
     @Autowired
     public BookmarkController(BookmarkService bookmarkService) {
-
         this.bookmarkService = bookmarkService;
     }
 

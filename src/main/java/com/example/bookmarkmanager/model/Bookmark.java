@@ -42,7 +42,7 @@ public class Bookmark {
      @JoinColumn(name = "folder_id", foreignKey = @ForeignKey(name="folder_id"))
      private Folder folder;
 
-       public Bookmark() {
+     public Bookmark() {
     }
 
     public Bookmark(Long id, String name, String url, Date createdAt, Date updatedAt, Folder folder) {
