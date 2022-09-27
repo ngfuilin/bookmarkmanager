@@ -78,7 +78,7 @@ http://localhost:8080/api/v1/folders
 http://localhost:8080/api/v1/folders  
 ```
 - Body:  
-```
+```json
 {
   "name": "folder 01",
   "description": "folder 01 description"
@@ -95,7 +95,7 @@ http://localhost:8080/api/v1/bookmarks
 ```        
 **2.1 create a bookmark belongs to a folder**  
 - Body:
-```
+```json
 {
   "name": "bookmark 01",
   "url": "http://www.bookmark01.com",
@@ -106,7 +106,7 @@ http://localhost:8080/api/v1/bookmarks
 **2.2 create a bookmark does not belongs to any folder**  
 - Body:
 
-```
+```json
 {
   "name": "bookmark 02",
   "url": "https://www.bookmark02.com"
@@ -131,12 +131,12 @@ http://localhost:8080/api/v1/folders/1?name=folder01 test&description=folder01 d
 ```
 http://localhost:8080/api/v1/bookmarks/1?folderId=1 
 ```
-**2.2 Update name, url and folder Id for a bookmark**  
+**2.2 Update name, url and folder Id for a bookmark with folder Id = 1**  
 - URL:
 ```
 http://localhost:8080/api/v1/bookmarks/1?name=chgbookmark&url=http://www.rch.com&folderId=1
 ```
-**2.3 Update name and url for a bookmark**  
+**2.3 Update name and url for a bookmark with folder Id = 1**  
 
 ```
 http://localhost:8080/api/v1/bookmarks/1?name=abc&url=http://abc.com
@@ -155,8 +155,50 @@ http://localhost:8080/api/v1/folders/1
 **2.  Delete a bookmark**   
 - Method: **DELETE**
 - Endpoint: /api/v1/bookmarks/:id
-- URL:  
+- URL:  (to delete bookmark with id = 1)
 
 ```
 http://localhost:8080/api/v1/bookmarks/1  
 ```
+
+**Restful API Response Code**  
+
+| HTTP Status Code          |                                                                                                                              Description |
+|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| 200 OK                    |                                                                                                                               Successful |
+| 400 Bad Request           |                                                                    Bad input parameter. Error message should indicate which one and why. |
+| 404 Not Found             |                                                                                                                      Resource not found. |
+| 500 Internal Server Error | Server encountered an unexpected condition that prevented it from fulfilling the request. Error message should indicate possible causes. |
+
+**Annotation Used**  
+
+| Annotation            | Description                                                                                                                                                                               |
+|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| @Entity               | Specifies that the class is an entity and is mapped to a database table.                                                                                                                  |
+| @Table                | Specifies the name of the database table to be used for mapping                                                                                                                           |
+| @JsonInclude          | to indicate when value of the annotated property (when used for a field, method or constructor parameter), or all properties of the annotated class, is to be serialized.                 |
+| @JsonIgnoreProperties | used at class level to mark a property or list of properties to be ignored.                                                                                                               |
+| @SequenceGenerator    | Defines a primary key generator that may be referenced by name when a generator element is specified for the GeneratedValue annotation.                                                   |
+| @GeneratedValue       | Provides the specification of generation strategies for the primary keys values.                                                                                                          |
+| @Column               | It is an optional annotation that enables you to customize the mapping between the entity attribute and the database column.                                                              |
+| @Id                   | Specifies the primary key of an entity                                                                                                                                                    |
+| @CreationTimeStamp    | Marks a property as the creation timestamp of the containing entity. The property value will be set to the current VM date exactly once when saving the owning entity for the first time. |
+| @UpdateTimestamp      | To track the timestamp of the last update of an entity. Attribute value changed for every update.                                                                                         |
+| @ManyToOne            | Defines a many-to-one relationship between two entities                                                                                                                                   |
+| @JoinColumn           | Specifies a column for joining an entity association or element collection.                                                                                                               |
+| @OneToMany            | Define a many-to-one relationship between two entities.                                                                                                                                   |
+| @Repository           | Used to indicate that the class provides the mechanism for storage, retrieval, search, update and delete operation on objects.                                                            |
+| @Query                | Declares finder queries directly on repository methods.                                                                                                                                   |
+| @Service              | Used with classes that provide some business functionalities.                                                                                                                             |
+| @Autowired            | Enables you to inject the object dependency implicitly.                                                                                                                                   |
+| @Transactional        | Metadata that specifies the semantics of the transactions on a method. Use at service layer to define the transaction boundaries.                                                         |
+| @RestController       | Used to create RESTful web services.                                                                                                                                                      |
+| @RequestMapping       | Used to map web requests onto specific handler classes and/or handler methods.                                                                                                            |
+| @GetMapping           | Mapping HTTP GET requests onto specific handler methods. Use GET requests to retrieve data from your server.                                                                              |
+| @PathVariable         | Used to extract the value from the URI.                                                                                                                                                   |
+| @DeleteMapping        | Maps the HTTP DELETE requests onto specific handler methods of a Spring controller. Use DELETE request to delete resources from your system.                                              |
+| @PostMapping          | Mapping HTTP POST requests onto specific handler methods. Used to create new resources to your system.                                                                                    |
+| @PutMapping           | Mapping HTTP PUT  requests onto specific handler methods. Used to update  resources to your system.                                                                                       |
+| @RequestBody          | Indicates that Spring should deserialize a request body into an object.                                                                                                                   |
+| @RequestParam         | Used to bind a web request parameter to a method parameter.                                                                                                                               |
+
