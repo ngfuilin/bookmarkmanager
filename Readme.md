@@ -29,7 +29,7 @@ It uses PostgreSQL to store the data. The data models are as follow:
 * Make sure you are using Java 11 or above
 * Install IntelliJ
 * Install Postgresql and create an empty database name “bookmarkmanager” (you may use different database name).
-* Open application on IntelliJ. Remember to change the postgres username and password on application.properties file.
+* Open application on IntelliJ. Remember to change the postgres username, password and url according to your settings on application.properties file.
 ```
 spring.datasource.url=jdbc:postgresql://localhost:5432/bookmarkmanager
 spring.datasource.username=postgres
