@@ -51,29 +51,33 @@ Here are some endpoints you can call (Assume Tomcat webserver started on port 80
 
 ### Get information about bookmark and folder
 **1.  Get a list of bookmarks**  
-Method: GET   /api/v1/bookmarks
+Method: **GET**     /api/v1/bookmarks
 ```
 http://localhost:8080/api/v1/bookmarks
 ```
 
 **2.  Get a list of bookmarks for a folder**  
-Method: GET  /api/v1/bookmarks/folders/:id
+Method: **GET**     /api/v1/bookmarks/folders/:id
 ```
 http://localhost:8080/api/v1/bookmarks/folders/1
 ```
 
 **3.  Get a list of folders**  
-Method: GET  /api/v1/bookmarks/folders
+Method: **GET**     /api/v1/bookmarks/folders
 ```
 http://localhost:8080/api/v1/folders
 ```
 ### Create a Bookmark and Folder
 **1.  Create a folder**  
-Method: POST /api/v1/folders  
-Content-Type: application/json
+
+- Method: **POST**    
+- Endpoint: /api/v1/folders  
+- Content-Type: application/json  
+- URL:        
 ```     
 http://localhost:8080/api/v1/folders  
 ```
+- Body:  
 ```
 {
   "name": "folder 01",
@@ -81,13 +85,16 @@ http://localhost:8080/api/v1/folders
 }
 ```  
 
-**2.  Create a bookmark**  
-Method: POST /api/v1/bookmarks  
-Content-Type: application/json
+**2.  Create a bookmark**    
+
+- Method: **POST**    
+- Endpoint: /api/v1/bookmarks  
+- Content-Type: application/json
 ```
 http://localhost:8080/api/v1/bookmarks  
 ```        
-* create a bookmark belongs to a folder
+**2.1 create a bookmark belongs to a folder**  
+- Body:
 ```
 {
   "name": "bookmark 01",
@@ -96,7 +103,9 @@ http://localhost:8080/api/v1/bookmarks
 }   
 ```  
 
-* create a bookmark does not belongs to any folder
+**2.2 create a bookmark does not belongs to any folder**  
+- Body:
+
 ```
 {
   "name": "bookmark 02",
@@ -106,21 +115,29 @@ http://localhost:8080/api/v1/bookmarks
 ### Update a Bookmark and Folder
 
 **1.  Update a folder**   
-PUT /api/v1/folders/:id
+- Method: **PUT**     
+- Endpoint: /api/v1/folders/:id
+- URL:
 ```
 http://localhost:8080/api/v1/folders/1?name=folder01 test&description=folder01 description
 ```
 **2.  Update a bookmark**  
-PUT /api/v1/bookmarks/:id
-* Update folder Id for a bookmark
+- Method: **PUT**     
+- Endpoint: /api/v1/bookmarks/:id  
+
+**2.1 Update folder Id for a bookmark**  
+- URL:  
+
 ```
 http://localhost:8080/api/v1/bookmarks/1?folderId=1 
 ```
-* Update name, url and folder Id for a bookmark
+**2.2 Update name, url and folder Id for a bookmark**  
+- URL:
 ```
 http://localhost:8080/api/v1/bookmarks/1?name=chgbookmark&url=http://www.rch.com&folderId=1
 ```
-* Update name and url for a bookmark
+**2.3 Update name and url for a bookmark**  
+
 ```
 http://localhost:8080/api/v1/bookmarks/1?name=abc&url=http://abc.com
 ```  
@@ -128,12 +145,18 @@ http://localhost:8080/api/v1/bookmarks/1?name=abc&url=http://abc.com
 ### Delete a Bookmark and Folder
 
 **1.  Delete a folder(bookmarks under the folder will be deleted)**  
-DELETE /api/v1/folders/:id
+- Method: **DELETE**      
+- Endpoint: /api/v1/folders/:id
+- URL:  
+
 ```
 http://localhost:8080/api/v1/folders/1
 ```  
 **2.  Delete a bookmark**   
-DELETE /api/v1/bookmarks/:id
+- Method: **DELETE**
+- Endpoint: /api/v1/bookmarks/:id
+- URL:  
+
 ```
 http://localhost:8080/api/v1/bookmarks/1  
 ```
