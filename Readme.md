@@ -27,8 +27,8 @@ It uses PostgreSQL to store the data. The data models are as follow:
 
 * Clone this repository
 * Make sure you are using Java 11 or above
-* Install IntelliJ
-* Install Postgresql and create an empty database name “bookmarkmanager” (you may use different database name).
+* Install IntelliJ (Download link: <https://www.jetbrains.com/idea/download/#section=windows>)
+* Install Postgresql (Download link: <https://www.postgresql.org/download/>) and create an empty database name “bookmarkmanager” (you may use different database name).
 * Open application on IntelliJ. Remember to change the postgres username, password and url according to your settings on application.properties file.
 ```
 spring.datasource.url=jdbc:postgresql://localhost:5432/bookmarkmanager
@@ -51,19 +51,26 @@ Here are some endpoints you can call (Assume Tomcat webserver started on port 80
 
 ### Get information about bookmark and folder
 **1.  Get a list of bookmarks**  
-Method: **GET**     /api/v1/bookmarks
+- Method: **GET**     
+- URL:  
+
 ```
 http://localhost:8080/api/v1/bookmarks
 ```
 
 **2.  Get a list of bookmarks for a folder**  
-Method: **GET**     /api/v1/bookmarks/folders/:id
+- Method: **GET**    
+- Remark: *to get list of bookmarks for folder with folder id = 1*
+- URL:  
+
 ```
 http://localhost:8080/api/v1/bookmarks/folders/1
 ```
 
 **3.  Get a list of folders**  
-Method: **GET**     /api/v1/bookmarks/folders
+- Method: **GET**    
+- URL:
+
 ```
 http://localhost:8080/api/v1/folders
 ```
@@ -93,7 +100,7 @@ http://localhost:8080/api/v1/folders
 ```
 http://localhost:8080/api/v1/bookmarks  
 ```        
-**2.1 create a bookmark belongs to a folder**  
+- Remark: *create a bookmark belongs to a folder with folder id = 1*  
 - Body:
 ```json
 {
@@ -103,7 +110,7 @@ http://localhost:8080/api/v1/bookmarks
 }   
 ```  
 
-**2.2 create a bookmark does not belongs to any folder**  
+- Remark: *create a bookmark does not belongs to any folder*  
 - Body:
 
 ```json
@@ -116,27 +123,25 @@ http://localhost:8080/api/v1/bookmarks
 
 **1.  Update a folder**   
 - Method: **PUT**     
-- Endpoint: /api/v1/folders/:id
+- Remark: *update **name** to folder01 test and **description** to folder01 description for folder id = 1*
 - URL:
 ```
 http://localhost:8080/api/v1/folders/1?name=folder01 test&description=folder01 description
 ```
 **2.  Update a bookmark**  
-- Method: **PUT**     
-- Endpoint: /api/v1/bookmarks/:id  
-
-**2.1 Update folder Id for a bookmark**  
+- Method: **PUT**
+- Remark: *Update **folder Id** to 1 for bookmark with Id = 1* 
 - URL:  
 
 ```
 http://localhost:8080/api/v1/bookmarks/1?folderId=1 
 ```
-**2.2 Update name, url and folder Id for a bookmark with folder Id = 1**  
+- Remark: *Update name, url and folder Id for a bookmark with Id = 1*  
 - URL:
 ```
 http://localhost:8080/api/v1/bookmarks/1?name=chgbookmark&url=http://www.rch.com&folderId=1
 ```
-**2.3 Update name and url for a bookmark with folder Id = 1**  
+- Remark: *Update name and url for a bookmark with Id = 1* 
 
 ```
 http://localhost:8080/api/v1/bookmarks/1?name=abc&url=http://abc.com
@@ -145,8 +150,8 @@ http://localhost:8080/api/v1/bookmarks/1?name=abc&url=http://abc.com
 ### Delete a Bookmark and Folder
 
 **1.  Delete a folder(bookmarks under the folder will be deleted)**  
-- Method: **DELETE**      
-- Endpoint: /api/v1/folders/:id
+- Method: **DELETE**   
+- Remark: *Delete folder with id = 1*
 - URL:  
 
 ```
@@ -154,8 +159,8 @@ http://localhost:8080/api/v1/folders/1
 ```  
 **2.  Delete a bookmark**   
 - Method: **DELETE**
-- Endpoint: /api/v1/bookmarks/:id
-- URL:  (to delete bookmark with id = 1)
+- Remark: *Delete bookmark with id = 1*
+- URL: 
 
 ```
 http://localhost:8080/api/v1/bookmarks/1  
@@ -163,12 +168,12 @@ http://localhost:8080/api/v1/bookmarks/1
 
 **Restful API Response Code**  
 
-| HTTP Status Code          |                                                                                                                              Description |
-|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-| 200 OK                    |                                                                                                                               Successful |
-| 400 Bad Request           |                                                                    Bad input parameter. Error message should indicate which one and why. |
-| 404 Not Found             |                                                                                                                      Resource not found. |
-| 500 Internal Server Error | Server encountered an unexpected condition that prevented it from fulfilling the request. Error message should indicate possible causes. |
+| HTTP Status Code          | Description                                                                                                                      Description |
+|---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| 200 OK                    | Successful                                                                                                                                   |
+| 400 Bad Request           | Bad input parameter. Error message should indicate which one and why.                                                                        |
+| 404 Not Found             | Resource not found.                                                                                                                          |
+| 500 Internal Server Error | Server encountered an unexpected condition that prevented it from fulfilling the request. Error message should indicate possible causes.     |
 
 **Annotation Used**  
 
