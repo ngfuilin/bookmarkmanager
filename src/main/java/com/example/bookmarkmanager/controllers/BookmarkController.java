@@ -4,6 +4,8 @@ package com.example.bookmarkmanager.controllers;
 import com.example.bookmarkmanager.model.Bookmark;
 import com.example.bookmarkmanager.services.BookmarkService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -20,29 +22,37 @@ public class BookmarkController {
         this.bookmarkService = bookmarkService;
     }
 
-    @GetMapping
-    public List<Bookmark> getBookmarks() {
-        return bookmarkService.getBookmarks();
+   @GetMapping
+    public ResponseEntity<List<Bookmark>> getBookmarks() {
+        List<Bookmark> bookmarkList = bookmarkService.getBookmarks();
+
+       return new ResponseEntity<>(bookmarkList, HttpStatus.OK);
     }
 
+
    @GetMapping(path ="/folders/{folderId}")
-    public List<Bookmark> getBookmarksByFolderId(
+    public ResponseEntity<List<Bookmark>> getBookmarksByFolderId(
             @PathVariable("folderId") Long folderId) {
-       return bookmarkService.getBookmarksByFolderId(folderId);
+        List<Bookmark> bookmarkList =  bookmarkService.getBookmarksByFolderId(folderId);
+
+       return new ResponseEntity<>(bookmarkList, HttpStatus.OK);
    }
 
     @DeleteMapping(path="{id}")
-    public void deleteBookmark(@PathVariable("id") Long id) {
+    public ResponseEntity<HttpStatus> deleteBookmark(@PathVariable("id") Long id) {
         bookmarkService.deleteBookmark(id);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PostMapping
-    public void addNewBookmark(@RequestBody Bookmark bookmark) {
+    public ResponseEntity<HttpStatus> addNewBookmark(@RequestBody Bookmark bookmark) {
            bookmarkService.addNewBookmark(bookmark);
+           return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping(path = "{bookmarkId}")
-   public void updateBookmark(
+   public ResponseEntity<HttpStatus> updateBookmark(
             @PathVariable("bookmarkId") Long bookmarkId,
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String url,
@@ -50,6 +60,7 @@ public class BookmarkController {
     )
     {
         bookmarkService.updateBookmark(bookmarkId, name, url, folderId);
+        return new ResponseEntity<>(HttpStatus.OK);
 
     };
 }

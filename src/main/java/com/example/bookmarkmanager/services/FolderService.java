@@ -1,8 +1,10 @@
 package com.example.bookmarkmanager.services;
 
+import com.example.bookmarkmanager.exception.ResourceNotFoundException;
 import com.example.bookmarkmanager.model.Folder;
 import com.example.bookmarkmanager.repositories.FolderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -21,6 +23,7 @@ public class FolderService {
     }
 
     public List<Folder> getFolders() {
+
         return folderRepository.findAll();
     }
 
@@ -37,7 +40,7 @@ public class FolderService {
     public void deleteFolder(Long folderId) {
         boolean exists = folderRepository.existsById(folderId);
         if (!exists) {
-            throw new IllegalStateException(
+            throw new ResourceNotFoundException(
                     "Folder with id = " + folderId + " does not exists");
         }
 
@@ -47,7 +50,7 @@ public class FolderService {
     @Transactional
     public void updateFolder(Long id, String name, String description) {
         Folder folder = folderRepository.findById(id).
-                orElseThrow(() -> new IllegalStateException("Folder with id = " + id + " does not exist"));
+                orElseThrow(() -> new ResourceNotFoundException("Folder with id = " + id + " does not exist"));
 
         //Optional<Folder> optionalFolder = folderRepository.findFolderByName(name);
         //if (optionalFolder.isPresent() &&

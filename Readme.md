@@ -171,6 +171,8 @@ http://localhost:8080/api/v1/bookmarks/1
 | HTTP Status Code          | Description                                                                                                                      Description |
 |---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
 | 200 OK                    | Successful                                                                                                                                   |
+| 201 CREATED               | A request was successful and as a result, a resource has been created.                                                                       |
+| 204 NO CONTENT            | The server has successfully fulfilled the request and that there is no content to send.                                                     |
 | 400 Bad Request           | Bad input parameter. Error message should indicate which one and why.                                                                        |
 | 404 Not Found             | Resource not found.                                                                                                                          |
 | 500 Internal Server Error | Server encountered an unexpected condition that prevented it from fulfilling the request. Error message should indicate possible causes.     |
