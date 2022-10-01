@@ -102,7 +102,7 @@ http://localhost:8080/api/v1/folders
 - Method: **POST**    
 - Endpoint: /api/v1/bookmarks  
 - Content-Type: application/json
-- Success Status Code: 200
+- Success Status Code: 201
 - URL:
 ```
 http://localhost:8080/api/v1/bookmarks  
