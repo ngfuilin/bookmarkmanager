@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping(path="/api/v1/bookmarks")
 public class BookmarkController {
 
@@ -22,12 +23,14 @@ public class BookmarkController {
         this.bookmarkService = bookmarkService;
     }
 
+
    @GetMapping
     public ResponseEntity<List<Bookmark>> getBookmarks() {
         List<Bookmark> bookmarkList = bookmarkService.getBookmarks();
 
        return new ResponseEntity<>(bookmarkList, HttpStatus.OK);
     }
+
 
 
    @GetMapping(path ="/folders/{folderId}")

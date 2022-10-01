@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping(path="/api/v1/folders")
 public class FolderController {
 
@@ -19,6 +20,7 @@ public class FolderController {
         this.folderService = folderService;
     }
 
+
     @GetMapping
     public ResponseEntity<List<Folder>> getFolders() {
 
@@ -26,6 +28,7 @@ public class FolderController {
         return new ResponseEntity<>(folderList, HttpStatus.OK);
 
     }
+
 
     @PutMapping(path="{id}")
     public ResponseEntity<HttpStatus> updateFolderById(@PathVariable("id") Long id,
@@ -36,12 +39,14 @@ public class FolderController {
 
     }
 
+
     @DeleteMapping(path="{id}")
     public ResponseEntity<HttpStatus> deleteFolder(
             @PathVariable("id") Long id) {
         folderService.deleteFolder(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
 
     @PostMapping
     public ResponseEntity<HttpStatus> addNewFolder(

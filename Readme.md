@@ -52,34 +52,39 @@ Here are some endpoints you can call (Assume Tomcat webserver started on port 80
 ### Get information about bookmark and folder
 **1.  Get a list of bookmarks**  
 - Method: **GET**     
+- Success Status Code: 200
 - URL:  
 
 ```
 http://localhost:8080/api/v1/bookmarks
-```
+```  
 
 **2.  Get a list of bookmarks for a folder**  
 - Method: **GET**    
+- Success Status Code: 200
 - Remark: *to get list of bookmarks for folder with folder id = 1*
 - URL:  
 
 ```
 http://localhost:8080/api/v1/bookmarks/folders/1
-```
+```  
 
 **3.  Get a list of folders**  
 - Method: **GET**    
+- Success Status Code: 200
 - URL:
 
 ```
 http://localhost:8080/api/v1/folders
-```
+```  
+
 ### Create a Bookmark and Folder
 **1.  Create a folder**  
 
 - Method: **POST**    
 - Endpoint: /api/v1/folders  
 - Content-Type: application/json  
+- Success Status Code: 201
 - URL:        
 ```     
 http://localhost:8080/api/v1/folders  
@@ -97,6 +102,8 @@ http://localhost:8080/api/v1/folders
 - Method: **POST**    
 - Endpoint: /api/v1/bookmarks  
 - Content-Type: application/json
+- Success Status Code: 200
+- URL:
 ```
 http://localhost:8080/api/v1/bookmarks  
 ```        
@@ -118,12 +125,14 @@ http://localhost:8080/api/v1/bookmarks
   "name": "bookmark 02",
   "url": "https://www.bookmark02.com"
 }  
-```
+```  
+
 ### Update a Bookmark and Folder
 
 **1.  Update a folder**   
 - Method: **PUT**     
 - Remark: *update **name** to folder01 test and **description** to folder01 description for folder id = 1*
+- Success Status Code: 200
 - URL:
 ```
 http://localhost:8080/api/v1/folders/1?name=folder01 test&description=folder01 description
@@ -131,16 +140,17 @@ http://localhost:8080/api/v1/folders/1?name=folder01 test&description=folder01 d
 **2.  Update a bookmark**  
 - Method: **PUT**
 - Remark: *Update **folder Id** to 1 for bookmark with Id = 1* 
+- Success Status Code: 200
 - URL:  
 
 ```
 http://localhost:8080/api/v1/bookmarks/1?folderId=1 
-```
+```  
 - Remark: *Update name, url and folder Id for a bookmark with Id = 1*  
 - URL:
 ```
 http://localhost:8080/api/v1/bookmarks/1?name=chgbookmark&url=http://www.rch.com&folderId=1
-```
+```  
 - Remark: *Update name and url for a bookmark with Id = 1* 
 
 ```
@@ -152,6 +162,7 @@ http://localhost:8080/api/v1/bookmarks/1?name=abc&url=http://abc.com
 **1.  Delete a folder(bookmarks under the folder will be deleted)**  
 - Method: **DELETE**   
 - Remark: *Delete folder with id = 1*
+- Success Status Code: 204
 - URL:  
 
 ```
@@ -160,6 +171,7 @@ http://localhost:8080/api/v1/folders/1
 **2.  Delete a bookmark**   
 - Method: **DELETE**
 - Remark: *Delete bookmark with id = 1*
+- Success Status Code: 204
 - URL: 
 
 ```
@@ -170,9 +182,9 @@ http://localhost:8080/api/v1/bookmarks/1
 
 | HTTP Status Code          | Description                                                                                                                      Description |
 |---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
-| 200 OK                    | Successful                                                                                                                                   |
-| 201 CREATED               | A request was successful and as a result, a resource has been created.                                                                       |
-| 204 NO CONTENT            | The server has successfully fulfilled the request and that there is no content to send.                                                     |
+| 200 OK                    | Retrieve / Update (bookmarks / folders) successfully.                                                                                        |
+| 201 CREATED               | Add new bookmark / folder successfully.                                                                                                      |
+| 204 NO CONTENT            | Delete bookmark / folder successfully.                                                                                                       |
 | 400 Bad Request           | Bad input parameter. Error message should indicate which one and why.                                                                        |
 | 404 Not Found             | Resource not found.                                                                                                                          |
 | 500 Internal Server Error | Server encountered an unexpected condition that prevented it from fulfilling the request. Error message should indicate possible causes.     |
@@ -208,4 +220,5 @@ http://localhost:8080/api/v1/bookmarks/1
 | @PutMapping           | Mapping HTTP PUT  requests onto specific handler methods. Used to update  resources to your system.                                                                                       |
 | @RequestBody          | Indicates that Spring should deserialize a request body into an object.                                                                                                                   |
 | @RequestParam         | Used to bind a web request parameter to a method parameter.                                                                                                                               |
-
+| @CrossOrigin          | To enable cross-origin resource sharing (CORS).                                                                                                                                           |
+| @ControllerAdvice     | Allows to handle exceptions across the whole application in one global handling component.                                                                                                |
